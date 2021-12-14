@@ -25,14 +25,14 @@ X = iris.data[:, :2]
 y = iris.target  # 标签
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
-lin_svc = svm.SVC(kernel='linear').fit(X_train,y_train)  # 核函数kernel为线性核函数
-poly_svc = svm.SVC(kernel='poly',degree=3).fit(X_train,y_train)  #kernel为多项式核函数
+lin_svc = svm.SVC(kernel='linear',C=0.1).fit(X_train,y_train)  # 核函数kernel为线性核函数
+rbf_svc = svm.SVC(kernel='rbf', C=0.5,gamma=20,degree=3).fit(X_train, y_train)  #kernel为多项式核函数
 
 # 四、模型的评估
 print("Training_set_score in lin_svc：", format(lin_svc.score(X_train, y_train),'.3f'))
 print("Testing_set_score in lin_svc：", format(lin_svc.score(X_test, y_test),'.3f'))
-print("Training_set_score in poly_svc：", format(poly_svc.score(X_train, y_train),'.3f'))
-print("Testing_set_score in poly_svc：", format(poly_svc.score(X_test, y_test),'.3f'))
+print("Training_set_score in rbf_svc：", format(rbf_svc.score(X_train, y_train), '.3f'))
+print("Testing_set_score in rbf_svc：", format(rbf_svc.score(X_test, y_test), '.3f'))
 
 
 # 分类结果可视化
@@ -48,7 +48,7 @@ xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
 titles = ['LinearSVC (linear kernel)',
           'SVC with polynomial (degree 3) kernel']
 
-for i, clf in enumerate((lin_svc, poly_svc)):
+for i, clf in enumerate((lin_svc, rbf_svc)):
     # to plot the edge of different classes
     # to create a 1*2 grid , and set the i image as current image
     plt.subplot(1, 2, i + 1)
