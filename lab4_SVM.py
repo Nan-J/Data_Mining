@@ -26,7 +26,7 @@ y = iris.target  # 标签
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
 
 lin_svc = svm.SVC(kernel='linear',C=0.1).fit(X_train,y_train)  # 核函数kernel为线性核函数
-rbf_svc = svm.SVC(kernel='rbf', C=0.5,gamma=20,degree=3).fit(X_train, y_train)  #kernel为多项式核函数
+rbf_svc = svm.SVC(kernel='rbf', C=0.5,gamma=0.3,degree=3).fit(X_train, y_train)  #kernel为多项式核函数
 
 # 四、模型的评估
 print("Training_set_score in lin_svc：", format(lin_svc.score(X_train, y_train),'.3f'))

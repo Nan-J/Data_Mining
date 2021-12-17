@@ -5,7 +5,6 @@ from sklearn import datasets
 
 iris = datasets.load_iris()
 X = iris.data[:, :4]  # #表示我们取特征空间中的4个维度
-print(X.shape)
 
 # 绘制数据分布图
 plt.scatter(X[:, 0], X[:, 1], c="red", marker='o', label='see')

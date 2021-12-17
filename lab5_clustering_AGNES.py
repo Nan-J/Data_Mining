@@ -11,19 +11,15 @@ clustering = AgglomerativeClustering(linkage='ward', n_clusters=3)
 
 res = clustering.fit(irisdata)
 
-print("各个簇的样本数目：")
-print(pd.Series(clustering.labels_).value_counts())
-print("聚类结果：")
-print(confusion_matrix(iris.target, clustering.labels_))
-
 plt.figure()
 d0 = irisdata[clustering.labels_ == 0]
-plt.plot(d0[:, 0], d0[:, 1], 'r.')
+plt.plot(d0[:, 0], d0[:, 1], 'r.', label='label0')
 d1 = irisdata[clustering.labels_ == 1]
-plt.plot(d1[:, 0], d1[:, 1], 'go')
+plt.plot(d1[:, 0], d1[:, 1], 'go', label='label1')
 d2 = irisdata[clustering.labels_ == 2]
-plt.plot(d2[:, 0], d2[:, 1], 'b*')
+plt.plot(d2[:, 0], d2[:, 1], 'b*', label='label2')
 plt.xlabel("Sepal.Length")
 plt.ylabel("Sepal.Width")
 plt.title("AGNES Clustering")
+plt.legend(loc=2)
 plt.show()
